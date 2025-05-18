@@ -3,8 +3,8 @@ package br.edu.utfpr.pb.pw44s.server.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "tb_order")
@@ -20,6 +20,8 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+    private BigDecimal total;
 
     public Long getId() {
         return id;
@@ -41,6 +43,14 @@ public class Order {
         return user;
     }
 
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
     public void setUser(User user) {
         this.user = user;
     }
@@ -48,9 +58,10 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, LocalDateTime date, User user) {
+    public Order(Long id, LocalDateTime date, User user, BigDecimal total) {
         this.id = id;
         this.date = date;
         this.user = user;
+        this.total = total;
     }
 }

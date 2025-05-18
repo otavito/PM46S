@@ -8,8 +8,6 @@ import java.util.Set;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserResponseDTO {
 
     private String displayName;
@@ -23,5 +21,38 @@ public class UserResponseDTO {
         for (GrantedAuthority authority: user.getAuthorities()) {
             authorities.add( new AuthorityResponseDTO(authority.getAuthority()) );
         }
+    }
+
+    public UserResponseDTO() {
+    }
+
+    public UserResponseDTO(String displayName, String username, Set<AuthorityResponseDTO> authorities) {
+        this.displayName = displayName;
+        this.username = username;
+        this.authorities = authorities;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Set<AuthorityResponseDTO> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<AuthorityResponseDTO> authorities) {
+        this.authorities = authorities;
     }
 }

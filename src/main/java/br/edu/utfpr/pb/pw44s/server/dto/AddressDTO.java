@@ -8,7 +8,6 @@ public class AddressDTO {
 
     private Long id;
 
-    @NotNull
     private Long userId;
 
     @NotBlank

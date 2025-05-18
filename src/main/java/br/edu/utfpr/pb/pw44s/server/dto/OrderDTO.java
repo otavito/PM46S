@@ -3,6 +3,7 @@ package br.edu.utfpr.pb.pw44s.server.dto;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -16,13 +17,16 @@ public class OrderDTO {
     @NotNull
     private Long userId;
 
+    private BigDecimal total;
+
     public OrderDTO() {
     }
 
-    public OrderDTO(Long id, LocalDateTime date, Long userId) {
+    public OrderDTO(Long id, LocalDateTime date, Long userId, BigDecimal total) {
         this.id = id;
         this.date = date;
         this.userId = userId;
+        this.total = total;
     }
 
     public Long getId() {
@@ -47,5 +51,13 @@ public class OrderDTO {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 }

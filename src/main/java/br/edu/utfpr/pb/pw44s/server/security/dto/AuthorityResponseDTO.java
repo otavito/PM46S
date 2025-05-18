@@ -3,10 +3,13 @@ package br.edu.utfpr.pb.pw44s.server.security.dto;
 import lombok.*;
 
 @Data
-@NoArgsConstructor
 @Builder
 public class AuthorityResponseDTO {
+
     private String authority;
+
+    public AuthorityResponseDTO() {
+    }
 
     public String getAuthority() {
         return authority;
@@ -19,4 +22,6 @@ public class AuthorityResponseDTO {
     public AuthorityResponseDTO(String authority) {
         this.authority = authority;
     }
+
+
 }

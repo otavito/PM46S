@@ -7,8 +7,6 @@ import lombok.*;
 
 @Entity
 @Table(name = "tb_address")
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
 public class Address {
 
@@ -29,6 +27,17 @@ public class Address {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+    public Address() {
+    }
+
+    public Address(Long id, String address, String complement, String cep, User user) {
+        this.id = id;
+        this.address = address;
+        this.complement = complement;
+        this.cep = cep;
+        this.user = user;
+    }
 
     public Long getId() {
         return id;

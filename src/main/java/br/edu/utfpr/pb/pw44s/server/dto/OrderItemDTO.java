@@ -2,9 +2,7 @@ package br.edu.utfpr.pb.pw44s.server.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -14,27 +12,22 @@ public class OrderItemDTO {
     private Long id;
 
     @NotNull
-    private Long orderId;
-
-    @NotNull
     private Long productId;
 
     @NotNull
     @Min(value = 1, message = "Quantidade mínima: 1")
-    private Integer quantidade;
+    private Integer quantity;
 
-    @NotNull
-    private BigDecimal preco;
+    private BigDecimal price;
 
     public OrderItemDTO() {
     }
 
-    public OrderItemDTO(Long id, Long orderId, Long productId, Integer quantidade, BigDecimal preco) {
+    public OrderItemDTO(Long id, Long productId, Integer quantity, BigDecimal price) {
         this.id = id;
-        this.orderId = orderId;
         this.productId = productId;
-        this.quantidade = quantidade;
-        this.preco = preco;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public Long getId() {
@@ -45,14 +38,6 @@ public class OrderItemDTO {
         this.id = id;
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
     public Long getProductId() {
         return productId;
     }
@@ -61,19 +46,19 @@ public class OrderItemDTO {
         this.productId = productId;
     }
 
-    public Integer getQuantidade() {
-        return quantidade;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public BigDecimal getPreco() {
-        return preco;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

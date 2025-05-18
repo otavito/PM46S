@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 // T = class type, D = dto type, ID = attribute related to primary key type  
@@ -30,7 +31,7 @@ public abstract class CrudController <T, D, ID extends Serializable> {
     private T convertToEntity(D entityDto) {
         return getModelMapper().map(entityDto, this.typeClass);
     }
-    @GetMapping //http://ip.api:port/classname  	
+    @GetMapping
     public ResponseEntity<List<D>> findAll() {
         return ResponseEntity.ok(
                 getService().findAll().stream().map(
@@ -38,7 +39,7 @@ public abstract class CrudController <T, D, ID extends Serializable> {
                 )
         );
     }
-    @GetMapping("page")  //http://ip.api:port/classname/page  
+    @GetMapping("page")
     public ResponseEntity<Page<D>> findAll(
             @RequestParam int page,
             @RequestParam int size,
@@ -62,13 +63,7 @@ public abstract class CrudController <T, D, ID extends Serializable> {
             return ResponseEntity.noContent().build();
         }
     }
-    @PostMapping
-    public ResponseEntity<D> create(@RequestBody @Valid D entity) {
-        
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(convertToDto(getService()
-                        .save(convertToEntity(entity))));
-    }
+
     @PutMapping("{id}")
     public ResponseEntity<D> update(@PathVariable ID id, @RequestBody @Valid D entity) {
         return ResponseEntity.status(HttpStatus.OK).body(convertToDto(getService().save(convertToEntity(entity))));

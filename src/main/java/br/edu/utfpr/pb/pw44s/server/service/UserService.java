@@ -17,7 +17,11 @@ public class UserService {
     }
 
     public User save(User user) {
-        user.setPassword( bCryptPasswordEncoder.encode(user.getPassword()) );
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()) );
         return userRepository.save(user);
+    }
+
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

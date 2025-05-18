@@ -40,8 +40,6 @@ public class CategoryController {
                 .status(HttpStatus.OK).body(categoryService.findAll());
     }
 
-    // http://localhost:8080/categories/1
-    // http://localhost:8080/categories?id=1
     @GetMapping("{id}")
     public ResponseEntity<Category> findById(@PathVariable Long id) {
         Category category = categoryService.findOne(id);
