@@ -1,6 +1,7 @@
 package br.edu.utfpr.pb.pw44s.server.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -32,6 +33,10 @@ public class User implements UserDetails {
     @NotNull(message = "O campo 'username' não pode ser nulo.")
     @Size(min = 4)
     private String username;
+
+    @NotNull
+    @Email
+    private String email;
 
     @NotNull
     @Size(min = 6)
@@ -74,6 +79,14 @@ public class User implements UserDetails {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getDisplayName() {

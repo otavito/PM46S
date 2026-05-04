@@ -3,6 +3,7 @@ package br.edu.utfpr.pb.pw44s.server.dto;
 import br.edu.utfpr.pb.pw44s.server.model.User;
 import lombok.Data;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -21,6 +22,10 @@ public class UserDTO {
     private String displayName;
 
     @NotNull
+    @Email
+    private String email;
+
+    @NotNull
     @Size(min = 6)
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$")
     private String password;
@@ -29,16 +34,18 @@ public class UserDTO {
         this.id = user.getId();
         this.displayName = user.getDisplayName();
         this.username = user.getUsername();
+        this.email = user.getEmail();
         this.password = user.getPassword();
     }
 
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String username, String displayName, String password) {
+    public UserDTO(Long id, String username, String displayName, String email, String password) {
         this.id = id;
         this.username = username;
         this.displayName = displayName;
+        this.email = email;
         this.password = password;
     }
 
@@ -64,6 +71,14 @@ public class UserDTO {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

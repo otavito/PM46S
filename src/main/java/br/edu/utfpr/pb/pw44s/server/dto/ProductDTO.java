@@ -1,5 +1,6 @@
 package br.edu.utfpr.pb.pw44s.server.dto;
 
+import br.edu.utfpr.pb.pw44s.server.model.Category;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -18,9 +19,8 @@ public class ProductDTO {
     private BigDecimal price;
 
     @NotNull
-    private Long categoryId;
+    private Category category;
 
-    @NotNull
     private String image;
     private String mini1;
     private String mini2;
@@ -28,12 +28,12 @@ public class ProductDTO {
 
     public ProductDTO() {}
 
-    public ProductDTO(Long id, String name, String description, BigDecimal price, Long categoryId, String image, String mini1, String mini2, String mini3) {
+    public ProductDTO(Long id, String name, String description, BigDecimal price, Category category, String image, String mini1, String mini2, String mini3) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.categoryId = categoryId;
+        this.category = category;
         this.image = image;
         this.mini1 = mini1;
         this.mini2 = mini2;
@@ -72,12 +72,12 @@ public class ProductDTO {
         this.price = price;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getImage() {

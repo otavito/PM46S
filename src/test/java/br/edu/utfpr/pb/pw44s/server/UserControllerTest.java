@@ -92,6 +92,7 @@ public class UserControllerTest {
         User user = new User();
         user.setDisplayName("test-Display");
         user.setUsername("test-user");
+        user.setEmail("test@mail.com");
         user.setPassword("P4ssword");
         
         return user;

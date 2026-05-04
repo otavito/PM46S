@@ -46,6 +46,15 @@ public class ExceptionHandlerAdvice {
         return new ApiError(HttpStatus.BAD_REQUEST.value(), "Validation error!",
                 request.getServletPath(), null);
     }
+
+    @ExceptionHandler({UniqueConstraintViolationException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiError handlerUniqueConstraintException(UniqueConstraintViolationException exception, HttpServletRequest request) {
+        Map<String, String> validationErrors = new HashMap<>();
+        validationErrors.put(exception.getField(), exception.getMessage());
+        return new ApiError(HttpStatus.BAD_REQUEST.value(), "Validation error!",
+                request.getServletPath(), validationErrors);
+    }
     
     
 }
